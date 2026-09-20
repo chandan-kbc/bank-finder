@@ -3,197 +3,85 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All India Bank IFSC Code Directory</title>
+    <title>All India Bank IFSC Code Finder</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: #f8fafc; margin: 0; padding: 15px; }
-        .container { max-width: 600px; margin: 0 auto; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
-        h1 { font-size: 22px; color: #1e293b; text-align: center; margin-bottom: 5px; }
-        p { color: #64748b; text-align: center; font-size: 14px; margin-top: 0; }
-        .search-box { width: 100%; box-sizing: border-box; padding: 12px; font-size: 15px; border: 2px solid #cbd5e1; border-radius: 8px; margin: 15px 0; outline: none; }
-        .search-box:focus { border-color: #2563eb; }
-        .list { list-style: none; padding: 0; margin: 0; }
-        .list-item { margin-bottom: 10px; }
-        .list-item a { display: block; padding: 12px 16px; background: #f8fafc; border-radius: 8px; text-decoration: none; color: #0f172a; border: 1px solid #e2e8f0; }
-        .sub { font-size: 12px; color: #64748b; margin-top: 4px; display: block; }
+        body { font-family: -apple-system, BlinkMacSystemFont, sans-serif; background-color: #f1f5f9; margin: 0; padding: 15px; }
+        .box { max-width: 500px; margin: 20px auto; background: white; padding: 25px; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+        h1 { font-size: 22px; color: #0f172a; text-align: center; margin-top: 0; }
+        p { color: #64748b; text-align: center; font-size: 14px; }
+        .input-group { display: flex; gap: 8px; margin: 20px 0; }
+        input { flex: 1; padding: 12px; font-size: 16px; border: 2px solid #cbd5e1; border-radius: 8px; text-transform: uppercase; outline: none; }
+        input:focus { border-color: #2563eb; }
+        button { background: #2563eb; color: white; border: none; padding: 12px 20px; font-size: 16px; font-weight: bold; border-radius: 8px; cursor: pointer; }
+        #result { display: none; margin-top: 20px; border-top: 2px dashed #e2e8f0; padding-top: 15px; }
+        .badge { background: #e0f2fe; color: #0369a1; padding: 10px; border-radius: 8px; font-weight: bold; font-size: 18px; text-align: center; margin-bottom: 15px; }
+        .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #f8fafc; font-size: 14px; }
+        .label { color: #64748b; }
+        .val { color: #0f172a; font-weight: 600; text-align: right; }
+        .share-btn { display: block; text-align: center; background: #16a34a; color: white; padding: 12px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-top: 15px; }
+        #error { display: none; color: #dc2626; text-align: center; font-weight: 500; margin-top: 15px; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🏦 Bank IFSC Directory</h1>
-        <p>शाखा, बैंक या शहर का नाम लिखकर खोजें</p>
+    <div class="box">
+        <h1>🏦 All India IFSC Finder</h1>
+        <p>भारत के किसी भी बैंक का 11 अक्षरों का IFSC कोड दर्ज करें</p>
         
-        <input type="text" id="searchInput" class="search-box" placeholder="उदा. SBI, Patna, Mumbai..." onkeyup="filterBanks()">
+        <div class="input-group">
+            <input type="text" id="ifscCode" placeholder="उदा. SBIN0000152" maxlength="11">
+            <button onclick="searchIFSC()">खोजें</button>
+        </div>
 
-        <ul class="list" id="bankList">
-            <li class="list-item">
-        <a href="state-bank-of-india-patna-main-branch-sbin0000152.html">
-            <strong>State Bank of India</strong>
-            <span class="sub">Patna Main Branch (Patna, Bihar) | IFSC: SBIN0000152</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="state-bank-of-india-new-delhi-main-branch-sbin0000691.html">
-            <strong>State Bank of India</strong>
-            <span class="sub">New Delhi Main Branch (New Delhi, Delhi) | IFSC: SBIN0000691</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="state-bank-of-india-mumbai-main-branch-sbin0000300.html">
-            <strong>State Bank of India</strong>
-            <span class="sub">Mumbai Main Branch (Mumbai, Maharashtra) | IFSC: SBIN0000300</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="state-bank-of-india-kolkata-main-branch-sbin0000001.html">
-            <strong>State Bank of India</strong>
-            <span class="sub">Kolkata Main Branch (Kolkata, West Bengal) | IFSC: SBIN0000001</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="state-bank-of-india-bangalore-main-branch-sbin0040014.html">
-            <strong>State Bank of India</strong>
-            <span class="sub">Bangalore Main Branch (Bengaluru, Karnataka) | IFSC: SBIN0040014</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="punjab-national-bank-kankarbagh-punb0011200.html">
-            <strong>Punjab National Bank</strong>
-            <span class="sub">Kankarbagh (Patna, Bihar) | IFSC: PUNB0011200</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="punjab-national-bank-connaught-place-punb0000100.html">
-            <strong>Punjab National Bank</strong>
-            <span class="sub">Connaught Place (New Delhi, Delhi) | IFSC: PUNB0000100</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="punjab-national-bank-fort-mumbai-punb0000500.html">
-            <strong>Punjab National Bank</strong>
-            <span class="sub">Fort Mumbai (Mumbai, Maharashtra) | IFSC: PUNB0000500</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="hdfc-bank-boring-road-hdfc0000262.html">
-            <strong>HDFC Bank</strong>
-            <span class="sub">Boring Road (Patna, Bihar) | IFSC: HDFC0000262</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="hdfc-bank-k-g-marg-hdfc0000003.html">
-            <strong>HDFC Bank</strong>
-            <span class="sub">K G Marg (New Delhi, Delhi) | IFSC: HDFC0000003</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="hdfc-bank-fort-hdfc0000060.html">
-            <strong>HDFC Bank</strong>
-            <span class="sub">Fort (Mumbai, Maharashtra) | IFSC: HDFC0000060</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="icici-bank-exhibition-road-icic0000042.html">
-            <strong>ICICI Bank</strong>
-            <span class="sub">Exhibition Road (Patna, Bihar) | IFSC: ICIC0000042</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="icici-bank-connaught-place-icic0000007.html">
-            <strong>ICICI Bank</strong>
-            <span class="sub">Connaught Place (New Delhi, Delhi) | IFSC: ICIC0000007</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="icici-bank-nariman-point-icic0000004.html">
-            <strong>ICICI Bank</strong>
-            <span class="sub">Nariman Point (Mumbai, Maharashtra) | IFSC: ICIC0000004</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="bank-of-baroda-frazer-road-barb0patnax.html">
-            <strong>Bank of Baroda</strong>
-            <span class="sub">Frazer Road (Patna, Bihar) | IFSC: BARB0PATNAX</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="bank-of-baroda-parliament-street-barb0parame.html">
-            <strong>Bank of Baroda</strong>
-            <span class="sub">Parliament Street (New Delhi, Delhi) | IFSC: BARB0PARAME</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="bank-of-baroda-bandra-kurla-complex-barb0corpma.html">
-            <strong>Bank of Baroda</strong>
-            <span class="sub">Bandra Kurla Complex (Mumbai, Maharashtra) | IFSC: BARB0CORPMA</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="axis-bank-dak-bunglow-road-utib0000142.html">
-            <strong>Axis Bank</strong>
-            <span class="sub">Dak Bunglow Road (Patna, Bihar) | IFSC: UTIB0000142</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="axis-bank-statesman-house-utib0000007.html">
-            <strong>Axis Bank</strong>
-            <span class="sub">Statesman House (New Delhi, Delhi) | IFSC: UTIB0000007</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="axis-bank-fort-utib0000004.html">
-            <strong>Axis Bank</strong>
-            <span class="sub">Fort (Mumbai, Maharashtra) | IFSC: UTIB0000004</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="canara-bank-patna-main-cnrb0000378.html">
-            <strong>Canara Bank</strong>
-            <span class="sub">Patna Main (Patna, Bihar) | IFSC: CNRB0000378</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="canara-bank-connaught-circus-cnrb0000100.html">
-            <strong>Canara Bank</strong>
-            <span class="sub">Connaught Circus (New Delhi, Delhi) | IFSC: CNRB0000100</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="kotak-mahindra-bank-bailey-road-kkbk0005651.html">
-            <strong>Kotak Mahindra Bank</strong>
-            <span class="sub">Bailey Road (Patna, Bihar) | IFSC: KKBK0005651</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="kotak-mahindra-bank-nariman-point-kkbk0000172.html">
-            <strong>Kotak Mahindra Bank</strong>
-            <span class="sub">Nariman Point (Mumbai, Maharashtra) | IFSC: KKBK0000172</span>
-        </a>
-    </li>
-<li class="list-item">
-        <a href="union-bank-of-india-patna-main-ubin0530182.html">
-            <strong>Union Bank of India</strong>
-            <span class="sub">Patna Main (Patna, Bihar) | IFSC: UBIN0530182</span>
-        </a>
-    </li>
+        <div id="error">गलत IFSC कोड! कृपया सही कोड दर्ज करें।</div>
 
-        </ul>
+        <div id="result">
+            <div class="badge" id="resIfsc"></div>
+            <div class="row"><span class="label">बैंक</span><span class="val" id="resBank"></span></div>
+            <div class="row"><span class="label">शाखा</span><span class="val" id="resBranch"></span></div>
+            <div class="row"><span class="label">शहर / ज़िला</span><span class="val" id="resCity"></span></div>
+            <div class="row"><span class="label">राज्य</span><span class="val" id="resState"></span></div>
+            <div class="row"><span class="label">पता</span><span class="val" id="resAddress"></span></div>
+            <a href="#" id="shareLink" class="share-btn">WhatsApp पर भेजें</a>
+        </div>
     </div>
 
     <script>
-        function filterBanks() {
-            var input = document.getElementById('searchInput');
-            var filter = input.value.toLowerCase();
-            var ul = document.getElementById('bankList');
-            var li = ul.getElementsByTagName('li');
-
-            for (var i = 0; i < li.length; i++) {
-                var text = li[i].innerText.toLowerCase();
-                if (text.indexOf(filter) > -1) {
-                    li[i].style.display = "";
-                } else {
-                    li[i].style.display = "none";
-                }
+        function searchIFSC() {
+            var code = document.getElementById('ifscCode').value.trim().toUpperCase();
+            var err = document.getElementById('error');
+            var res = document.getElementById('result');
+            
+            if(code.length !== 11) {
+                err.innerText = "IFSC कोड पूरे 11 अक्षरों का होना चाहिए!";
+                err.style.display = "block";
+                res.style.display = "none";
+                return;
             }
+
+            fetch('https://ifsc.razorpay.com/' + code)
+                .then(response => {
+                    if (!response.ok) throw new Error();
+                    return response.json();
+                })
+                .then(data => {
+                    err.style.display = "none";
+                    document.getElementById('resIfsc').innerText = "IFSC: " + data.IFSC;
+                    document.getElementById('resBank').innerText = data.BANK;
+                    document.getElementById('resBranch').innerText = data.BRANCH;
+                    document.getElementById('resCity').innerText = data.CITY + ", " + data.DISTRICT;
+                    document.getElementById('resState').innerText = data.STATE;
+                    document.getElementById('resAddress').innerText = data.ADDRESS;
+                    
+                    var msg = encodeURIComponent(data.BANK + " (" + data.BRANCH + ") IFSC: " + data.IFSC);
+                    document.getElementById('shareLink').href = "https://wa.me/?text=" + msg;
+                    
+                    res.style.display = "block";
+                })
+                .catch(() => {
+                    err.innerText = "यह IFSC कोड नहीं मिला। कृपया दोबारा जांचें!";
+                    err.style.display = "block";
+                    res.style.display = "none";
+                });
         }
     </script>
 </body>
